@@ -1,7 +1,8 @@
 import React from 'react';
 import { Download, Star, MessageSquare } from "lucide-react";
-
+import { ToastContainer, toast } from 'react-toastify';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { setStoredApps } from '../../utils/localstorage';
 
 
 const AppsDetails = () => {
@@ -15,6 +16,11 @@ const AppsDetails = () => {
     const apps = appsDetails.find(app => app.id === appsInt);
     console.log(apps);
     const { image, title, description, id, size, ratingAvg, companyName, downloads, reviews } = apps;
+
+    const handleInstall = () => {
+        toast('App Installed Successfully');
+        setStoredApps(appsInt);
+    }
 
     return (
         <section className="bg-gray-50">
@@ -66,7 +72,7 @@ const AppsDetails = () => {
                         </div>
 
                         {/* Install Button */}
-                        <button className="mt-6 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md font-medium transition">
+                        <button onClick={handleInstall} className="mt-6 cursor-pointer bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md font-medium transition">
                             Install Now ({size})
                         </button>
                     </div>
@@ -120,7 +126,18 @@ const AppsDetails = () => {
                     </div>
                 </div>
             </div>
-
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </section>
     );
 

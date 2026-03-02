@@ -7,11 +7,14 @@ import Root from './Components/Root/Root.jsx'
 import Home from './Components/Home/Home.jsx'
 import Apps from './Components/Apps/Apps.jsx'
 import AppsDetails from './Components/AppsDetails/AppsDetails.jsx'
+import ErrorPage from './Components/ErrorPage/ErrorPage.jsx'
+import InstallList from './Components/Install/InstallList.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     Component: Root,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: '/',
@@ -28,7 +31,9 @@ const router = createBrowserRouter([
         Component: AppsDetails,
       },
       {
-        path: '/installation'
+        path: '/installation',
+        loader: ()=> fetch('datas.json'),
+        Component: InstallList
       }
     ]
   }
