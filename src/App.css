@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* border-b-2 border-purple-600 */
+
+.active{
+  border-bottom: 2px solid #8E24AA;
+  color: #8E24AA;
+  font-weight: 700;
+}
